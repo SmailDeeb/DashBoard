@@ -1,0 +1,36 @@
+html, body {
+    min-height: calc(100vh - 80px);
+    overflow-x: hidden;
+}
+body {
+    height: calc(100% - 80px);
+    padding-top: 80px;
+}
+
+.show-buttons .table-buttons {
+    display: flex;
+    justify-content: center;
+}
+.show-buttons .table-buttons .table-button {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    transition: all 0.3s ease-in-out !important;
+    top: -80px;
+    margin-right: 5px;
+    transition-delay: calc((var(--button-number) / 100) * 8s) !important;
+    transition-property: top;
+}
+.show-buttons:hover .table-buttons .table-button {
+    top: 0px;
+}
+.error-text {
+    font-size: 12px;
+}
+
+.list .list-item {
+    list-style: none;
+}
+nav{
+    background: #4942E4;
+}
