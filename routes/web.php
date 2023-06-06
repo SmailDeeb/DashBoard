@@ -32,6 +32,7 @@ Route::post('logout', [AdminController::class, 'logout'])->name('logout');
 
 
 
+
 Route::get('test', function () {
     // return PermissionsEnum::EDIT_ADMIN->value;
     return Admin::count();
