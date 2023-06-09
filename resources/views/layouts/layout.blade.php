@@ -28,25 +28,32 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admins.index') }}">Admins</a>
                     </li>
+                    @can('view-analysis')
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('analyes') }}">Analyes
                             <span class="sr-only">(current)</span></a>
-                    </li>
+                    </li>@endcan
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
+                        <ul class="navbar-nav mr-auto">@can('accept-request')
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">REQUESTS
+                                <a class="nav-link" href="{{ route('request') }}">REQUESTS
                                     <span class="sr-only">(current)</span></a>
-                            </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        REPORTS
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">VIEW REPORTS</a></li>
-                        <li><a class="dropdown-item" href="#">SEND REPORTS</a></li>
+                            </li>@endcan
+                            
+                            @can('give-reports')
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    REPORTS
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    @can('view-reports')
+                                    <li><a class="dropdown-item" href="{{ route('reports') }}">VIEW REPORTS</a></li>
+                                    @endcan
+                        <li><a class="dropdown-item" href="{{ route('sendreport') }}">SEND REPORTS</a></li>
+                        
                         </ul>
                     </li>
+                    @endcan
                     @auth
 
                     <form action="{{ route('logout') }}" method="POST">

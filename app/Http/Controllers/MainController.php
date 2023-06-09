@@ -22,4 +22,9 @@ class MainController extends Controller
     {
         return view('analyes');
     }
+
+    public function request()
+    {
+        return view('request');
+    }
 }
