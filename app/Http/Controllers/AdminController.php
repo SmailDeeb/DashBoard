@@ -12,13 +12,17 @@ use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
-    function __construct()
+    public function __construct()
     {
         $this->middleware('auth')->except(['getLogin', 'login']);
-        $this->middleware('permission:' . PermissionsEnum::CREATE_ADMIN->value)->only(['create', 'store']);
-        $this->middleware('permission:' . PermissionsEnum::EDIT_ADMIN->value)->only(['edit', 'update']);
-        $this->middleware('permission:' . PermissionsEnum::DELETE_ADMIN->value)->only(['destroy']);
+        $this->middleware('permission:'.PermissionsEnum::CREATE_ADMIN->value)->only(['create', 'store']);
+        $this->middleware('permission:'.PermissionsEnum::EDIT_ADMIN->value)->only(['edit', 'update']);
+        $this->middleware('permission:'.PermissionsEnum::DELETE_ADMIN->value)->only(['destroy']);
+        $this->middleware('permission'.PermissionsEnum::VIEW_ANALYSIS->value)->only(['analyes']);
+        // $this->middleware('permission'.PermissionsEnum::VIEW_REPORTS->value)->only(['reports']);
+        // $this->middleware('permission'.PermissionsEnum::ACCEPT_REQUEST->value)->only(['accept_request']);
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -27,6 +31,7 @@ class AdminController extends Controller
         // return 'test';
         try {
             $admins = Admin::all()->load('roles');
+
             return view('admins.index', ['admins' => $admins]);
         } catch (\Throwable $th) {
             return abort(500);
@@ -40,6 +45,7 @@ class AdminController extends Controller
     {
         try {
             $roles = Role::select('id', 'name')->get();
+
             return view('admins.create', ['roles' => $roles]);
         } catch (\Throwable $th) {
             return abort(500);
@@ -60,9 +66,6 @@ class AdminController extends Controller
         ]);
         try {
             // ddd($validation);
-            // return $validation;
-
-            // $admin = Admin::find($request->id);
             $admin = Admin::create([
                 'name' => $request->name,
                 'username' => $request->username,
@@ -103,6 +106,7 @@ class AdminController extends Controller
         try {
             $roles = Role::select('id', 'name')->get();
             $admin->load('roles');
+
             return view('admins.edit', ['admin' => $admin, 'roles' => $roles]);
         } catch (\Throwable $th) {
             return abort(500);
@@ -122,7 +126,6 @@ class AdminController extends Controller
             'role' => 'required',
         ]);
         try {
-
             $admin->update([
                 'name' => $request->name,
                 'username' => $request->username,
@@ -136,13 +139,16 @@ class AdminController extends Controller
 
             if ($admin) {
                 DB::commit();
+
                 return redirect()->route('admins.index');
             } else {
                 DB::rollBack();
+
                 return abort(500);
             }
         } catch (\Throwable $th) {
             DB::rollBack();
+
             return abort(500);
         }
     }
@@ -154,6 +160,7 @@ class AdminController extends Controller
     {
         try {
             $admin->delete();
+
             return redirect()->route('admins.index');
         } catch (\Throwable $th) {
             return abort(500);
@@ -171,15 +178,12 @@ class AdminController extends Controller
 
     public function login(Request $request)
     {
-        // return $request;
         $request->validate([
             'username_or_email' => 'required',
             'password' => 'required',
         ]);
         try {
-
             if (Auth::attempt(['username' => $request->username_or_email, 'password' => $request->password]) || Auth::attempt(['email' => $request->username_or_email, 'password' => $request->password])) {
-                // return view('dashboard');
                 return redirect()->intended(route('dashboard'));
             } else {
                 return back()->withInput($request->only('username_or_email'));
@@ -193,6 +197,7 @@ class AdminController extends Controller
     {
         try {
             Auth::logout();
+
             return redirect()->route('get.login');
         } catch (\Throwable $th) {
             return abort(500);

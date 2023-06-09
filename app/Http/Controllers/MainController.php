@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
-use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
@@ -12,9 +11,15 @@ class MainController extends Controller
         try {
             $admins = Admin::orderBy('created_at', 'DESC')->limit(5)->get();
             $adminsCount = Admin::count();
+
             return view('dashboard', ['admins' => $admins, 'adminsCount' => $adminsCount]);
         } catch (\Throwable $th) {
             abort(500);
         }
+    }
+
+    public function analyes()
+    {
+        return view('analyes');
     }
 }
