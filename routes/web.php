@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/sendreport', [ReportController::class, 'sendreport'])->name('sendreport');
-    Route::post('/reports', [ReportController::class, 'store'])->name('store');
+    Route::get('/sendreport/store', [ReportController::class, 'store'])->name('store');
     Route::get('/reports', [ReportController::class, 'showreport'])->name('showreport');
     Route::get('/analyes', [MainController::class, 'analyes'])->name('analyes');
     Route::get('/request', [MainController::class, 'request'])->name('request');

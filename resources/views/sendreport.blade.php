@@ -4,29 +4,31 @@
 
 <h1>Send Report</h1>
 {{-- <img src="public/images/R.png"> --}}
-<form mehtod='post' action='{{ route('store') }}' class='col-9'>
+<form mehtod='POST' action='{{ route('store') }}' class='col-9'>
 @csrf
+@method('PUT')
 <fieldset>
 <div class="row mt-4">
 
     <div class="form-floating m-3 ms-4 col-3">
-      <input type="text" class="form-control" id="floatingInput" placeholder="Who send report">
-      <label for="floatingInput" name='from'>FROM</label>
+      <input type="text" class="form-control" name='from' id="floatingInput" placeholder="Who send report">
+      <label for="floatingInput" >FROM</label>
     </div>
     <div class="form-floating m-3 me-lg-5 col-3">
-      <input type="text" class="form-control" id="floatingInput2" placeholder="Title for report">
-      <label for="floatingInput2" name='about'>About</label>
+      <input type="text" class="form-control" id="floatingInput2"name='about'  placeholder="Title for report">
+      <label for="floatingInput2" >About</label>
     </div>
 
     <div class="col-4 m-4 d-inline">
-    <select class="form-control" >
+    <select class="form-control" name="type">
       <option   disabled selected >Select type</option>
-      
+      <option value=0 >Normal Report</option>
+      <option value=1 >neccery Report</option>
     </select>
     </div>
     <div class="m-4 col-7 ">
-      <span class="input-group-text" name='content' >Report</span>
-      <textarea class="form-control inline-block" aria-label="Report"></textarea>
+      <span class="input-group-text"  >Report</span>
+      <textarea class="form-control inline-block" name='content' aria-label="Report"></textarea>
       </div>
       <div class="d-grid m-4 col-4">
         <button class="btn btn-primary fa-send rounded-pill" type="submit">SEND REPORT </button>

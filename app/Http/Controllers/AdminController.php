@@ -65,7 +65,6 @@ class AdminController extends Controller
             'role' => 'required',
         ]);
         try {
-            // ddd($validation);
             $admin = Admin::create([
                 'name' => $request->name,
                 'username' => $request->username,

@@ -16,7 +16,7 @@ return new class() extends Migration {
             $table->string('about');
             $table->string('content');
             $table->string('status');
-            $table->timestamp('createdAt');
+            $table->timestamps();
         });
     }
 
