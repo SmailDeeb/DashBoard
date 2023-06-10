@@ -55,12 +55,13 @@
                     </li>
                     @endcan
                     @auth
-
-                    <form action="{{ route('logout') }}" method="POST">
+                    <div class=" float-xl-end ">
+                    <form action="{{ route('logout') }}" method="POST" >
                         @csrf
-                        <span class="mx-2">{{ auth()->user()->name }}</span>
+                        <span >{{ auth()->user()->name }}</span>
                         <button class="btn btn-outline-danger" type="submit">Logout</button>
                     </form>
+                </div>
                     @endauth
                 </ul>
             </div>
