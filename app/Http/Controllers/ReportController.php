@@ -23,9 +23,9 @@ class ReportController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'from' => 'required | alpha ',
-            'about' => 'required | alpha',
-            'content' => 'required | alpha',
+            'from' => 'required',
+            'about' => 'required',
+            'content' => 'required',
             'type' => 'required',
 
         ]);
@@ -38,7 +38,7 @@ class ReportController extends Controller
             ]); 
             
             if($report){
-                return redirect()->back();
+                return redirect()->route('dashboard');
             }
         }catch (Exception $e) {
             return $e->getMessage();

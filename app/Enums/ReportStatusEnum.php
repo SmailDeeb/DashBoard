@@ -2,10 +2,10 @@
 
 namespace App\Enums;
 
-enum PermissionsEnum: int
+enum ReportStatusEnum: int
 {
-    case Normal_Report = 0;
-    case neccary_Report = 1;
-    case seen_Report = 2;
-    case Archived_Report = 3;
+    case NORMAL_REPORT = 0;
+    case NECCARY_REPORT = 1;
+    case SEEN_REPORT = 2;
+    case ARCHIVED_REPORT = 3;
 }

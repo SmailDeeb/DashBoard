@@ -22,9 +22,9 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admins.index') }}">Admins</a>
                     </li>
@@ -32,40 +32,44 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('analyes') }}">Analyes
                             <span class="sr-only">(current)</span></a>
+                    </li>
+                    @endcan
+                    @can('accept-request')
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('request') }}">REQUESTS
+                            <span class="sr-only">(current)</span></a>
                     </li>@endcan
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">@can('accept-request')
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{{ route('request') }}">REQUESTS
-                                    <span class="sr-only">(current)</span></a>
-                            </li>@endcan
-                            
-                            @can('give-reports')
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    REPORTS
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    @can('view-reports')
-                                    <li><a class="dropdown-item" href="{{ route('showreport') }}">VIEW REPORTS</a></li>
-                                    @endcan
-                        <li><a class="dropdown-item" href="{{ route('sendreport') }}">SEND REPORTS</a></li>
-                        
+
+                    @can('give-reports')
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            REPORTS
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @can('view-reports')
+                            <li><a class="dropdown-item" href="{{ route('showreport') }}">VIEW REPORTS</a></li>
+                            @endcan
+                            <li><a class="dropdown-item" href="{{ route('sendreport') }}">SEND REPORTS</a></li>
+
                         </ul>
                     </li>
                     @endcan
-                    @auth
-                    <div class=" float-xl-end ">
-                    <form action="{{ route('logout') }}" method="POST" >
-                        @csrf
-                        <span >{{ auth()->user()->name }}</span>
-                        <button class="btn btn-outline-danger" type="submit">Logout</button>
-                    </form>
-                </div>
-                    @endauth
                 </ul>
+                @auth
+                <ul class="navbar-nav ms-auto">
+                    <li>
+                        <div>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <span>{{ auth()->user()->name }}</span>
+                                <button class="btn btn-outline-danger" type="submit">Logout</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+                @endauth
             </div>
-        </div>
     </nav>
 
     <div class="container">

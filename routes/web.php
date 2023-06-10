@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ReportStatusEnum;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ReportController;
@@ -17,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/sendreport', [ReportController::class, 'sendreport'])->name('sendreport');
+    Route::get('/report/sendreport', [ReportController::class, 'sendreport'])->name('sendreport');
     Route::get('/sendreport/store', [ReportController::class, 'store'])->name('store');
-    Route::get('/reports', [ReportController::class, 'showreport'])->name('showreport');
+    Route::get('/report/view', [ReportController::class, 'showreport'])->name('showreport');
     Route::get('/analyes', [MainController::class, 'analyes'])->name('analyes');
     Route::get('/request', [MainController::class, 'request'])->name('request');
     Route::get('/', [MainController::class, 'index'])->name('dashboard');
@@ -32,5 +33,7 @@ Route::post('login', [AdminController::class, 'login'])->name('login');
 Route::post('logout', [AdminController::class, 'logout'])->name('logout');
 
 Route::get('/test', function () {
+    // ReportStatusEnum::ARCHIVED_REPORT->value;
+    // ReportStatusEnum::from(1)->name;
     return view('sendreport');
 });
