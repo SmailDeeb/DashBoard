@@ -2,11 +2,15 @@
 @section('title' , 'Analytics')
 @section('content')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h1>Analytics</h1>
 <div>
     <canvas id="myChart"></canvas>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<div class="col-2">
 
 <script>
     const ctx = document.getElementById('myChart');
@@ -30,9 +34,13 @@
       }
     });
 </script>
+</div>
+
+<div class="col-1"><script>
+  
+  </script>
+</div>
 
 
-
-<h1>Analytics</h1>
 
 @endsection

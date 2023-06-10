@@ -47,7 +47,7 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     @can('view-reports')
-                                    <li><a class="dropdown-item" href="{{ route('reports') }}">VIEW REPORTS</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('showreport') }}">VIEW REPORTS</a></li>
                                     @endcan
                         <li><a class="dropdown-item" href="{{ route('sendreport') }}">SEND REPORTS</a></li>
                         

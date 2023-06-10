@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/sendreport', 'ReportController@send')->name('sendreport');
-    Route::get('/reports', 'ReportController@show')->name('reports');
+    Route::get('/sendreport', [ReportController::class, 'sendreport'])->name('sendreport');
+    Route::get('/reports', [ReportController::class, 'showreport'])->name('showreport');
     Route::get('/analyes', [MainController::class, 'analyes'])->name('analyes');
     Route::get('/request', [MainController::class, 'request'])->name('request');
     Route::get('/', [MainController::class, 'index'])->name('dashboard');
