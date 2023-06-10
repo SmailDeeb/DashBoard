@@ -12,12 +12,12 @@ class ReportController extends Controller
     {
         $reports = Reports::All();
 
-        return view('viewreports', ['reports' => $reports]);
+        return view('report.viewreports', ['reports' => $reports]);
     }
 
     public function sendreport()
     {
-        return view('sendreport');
+        return view('report.sendreport');
     }
 
     public function store(Request $request)
@@ -27,21 +27,20 @@ class ReportController extends Controller
             'about' => 'required',
             'content' => 'required',
             'type' => 'required',
-
         ]);
-                try {
-            $report=Reports::create([
+        try {
+            $report = Reports::create([
                 'from' => $request->from,
                 'about' => $request->about,
                 'content' => $request->content,
-                'status' => $request->type
-            ]); 
-            
-            if($report){
+                'status' => $request->type,
+            ]);
+
+            if ($report) {
                 return redirect()->route('dashboard');
             }
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
-        };
+        }
     }
 }

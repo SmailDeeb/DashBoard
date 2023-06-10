@@ -3,8 +3,9 @@
 @section('content')
 
 <h1>Send Report</h1>
-{{-- <img src="public/images/R.png"> --}}
-<form mehtod='POST' action='{{ route('store') }}' class='col-9'>
+<div class="row ">
+
+<form mehtod='POST' action='{{ route('store') }}' class='col-6'>
 @csrf
 @method('PUT')
 <fieldset>
@@ -37,5 +38,9 @@
 </fieldset>
 
 </form>
+<div class="col-6">
 
+  <img src="/images/R.png" style="max-height: 75vh">
+  </div>
+</div>
 @endsection
