@@ -49,7 +49,7 @@
     ],
     datasets: [{
       label: 'My First Dataset',
-      data: [{{ count($admins) }}, {{ count($posts) }}, {{ count($users) }} ],
+      data: [{{ count($admins) }}, {{ count($posts) }}, {{ count($users) }} ,{{ count($cars) }} ],
       backgroundColor: [
         'rgb(255, 99, 132)',
         'rgb(54, 162, 235)',

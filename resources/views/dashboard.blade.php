@@ -65,8 +65,6 @@
                         </div>
                     </div>
                 </div>
-
-                <a href="{{ route('admins.index') }}" class="btn btn-primary">Browse</a>
             </div>
         </div>
     </div>
