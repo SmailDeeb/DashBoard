@@ -57,7 +57,7 @@
                             <div class="accordion-body">
                                 <ul class="list">
                                     @foreach ($reports as $report)
-                                    <li class="list-item"><i class="fa fa-play me-2 fa-xs"></i>
+                                    <li class="list-item"><i class="fa fa-play me-3 fa-xs"></i>
                                         {{ $report->from }}</li>
                                     @endforeach
                                 </ul>
