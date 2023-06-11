@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
-use App\Models\Car;
 use App\Models\Post;
 use App\Models\Report;
 use App\Models\User;
