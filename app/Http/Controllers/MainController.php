@@ -25,12 +25,11 @@ class MainController extends Controller
 
     public function analyes()
     {
-        $cars = Car::all();
         $admins = Admin::all();
         $posts = Post::all();
         $users = User::all();
 
-        return view('analyes', ['posts' => $posts, 'admins' => $admins, 'users' => $users, 'cars' => $cars]);
+        return view('analyes', ['posts' => $posts, 'admins' => $admins, 'users' => $users]);
     }
 
     public function request()
