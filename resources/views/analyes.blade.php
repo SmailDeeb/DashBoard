@@ -21,10 +21,10 @@
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Admins', 'Post', 'user'],
         datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
+          label: '',
+          data: [{{ count($admins) }}, {{ count($posts) }}, {{ count($users) }} ],
           borderWidth: 1
         }]
       },
@@ -43,13 +43,13 @@
 
     const data = {
     labels: [
-      'Red',
-      'Blue',
-      'Yellow'
+      'Admins',
+      'Posts',
+      'Users'
     ],
     datasets: [{
       label: 'My First Dataset',
-      data: [300, 50, 100],
+      data: [{{ count($admins) }}, {{ count($posts) }}, {{ count($users) }} ],
       backgroundColor: [
         'rgb(255, 99, 132)',
         'rgb(54, 162, 235)',

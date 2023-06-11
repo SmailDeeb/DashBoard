@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +16,7 @@ class UserSeeder extends Seeder
         $users = [
             [
                 'name' => 'John',
-                'email' => 'john@example.com',
+                'email' => 'john3@example.com',
                 'password' => Hash::make('Test@123'),
                 'cell_phone' => '0928374928',
                 'subscription_package_id' => 1,
@@ -26,7 +25,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Test',
-                'email' => 'test@example.com',
+                'email' => 'test3@example.com',
                 'password' => Hash::make('Test@123'),
                 'cell_phone' => '0928374928',
                 'subscription_package_id' => 2,
@@ -35,7 +34,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Test2',
-                'email' => 'test2@example.com',
+                'email' => 'test23@example.com',
                 'password' => Hash::make('Test@123'),
                 'cell_phone' => '0928374928',
                 'subscription_package_id' => 2,
@@ -43,7 +42,7 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ];
-        
+
         DB::connection('mysql2')->table('users')->insert($users);
     }
 }

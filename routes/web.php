@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/report/view', [ReportController::class, 'showreport'])->name('showreport');
     Route::get('/report/archive', [ReportController::class, 'showArchivedReports'])->name('reports.archived');
     Route::get('/analyes', [MainController::class, 'analyes'])->name('analyes');
-    Route::get('/request', [MainController::class, 'request'])->name('request');
+    Route::get('post/request', [MainController::class, 'request'])->name('request');
     Route::get('/', [MainController::class, 'index'])->name('dashboard');
     Route::get('/home', [MainController::class, 'index'])->name('dashboard');
     Route::resource('admins', AdminController::class);
