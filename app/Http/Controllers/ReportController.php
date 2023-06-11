@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reports;
+use App\Enums\ReportStatusEnum;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use SebastianBergmann\Type\Exception;
 
@@ -10,7 +11,7 @@ class ReportController extends Controller
 {
     public function showreport()
     {
-        $reports = Reports::All();
+        $reports = Report::All();
 
         return view('report.viewreports', ['reports' => $reports]);
     }
@@ -29,7 +30,7 @@ class ReportController extends Controller
             'type' => 'required',
         ]);
         try {
-            $report = Reports::create([
+            $report = Report::create([
                 'from' => $request->from,
                 'about' => $request->about,
                 'content' => $request->content,
@@ -40,7 +41,67 @@ class ReportController extends Controller
                 return redirect()->route('dashboard');
             }
         } catch (Exception $e) {
-            return $e->getMessage();
+            return abort(500);
+        }
+    }
+
+    public function markAsRead($id)
+    {
+        // return 'test';
+        try {
+            $report = Report::find($id);
+
+            if ($report) {
+                $report->status = ReportStatusEnum::SEEN_REPORT->value;
+                $report->save();
+                return redirect()->route('showreport');
+            } else {
+                return abort(404);
+            }
+        } catch (\Throwable $th) {
+            return abort(500);
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $report = Report::find($id);
+
+            if ($report) {
+                $report->delete();
+
+                return redirect()->route('showreport');
+            } else {
+                return abort(404);
+            }
+        } catch (\Throwable $th) {
+            return abort(500);
+        }
+    }
+
+    public function showArchivedReports()
+    {
+        $archivedReports = Report::onlyTrashed()->get();
+        // return $archivedReports;
+        return view('report.archived')->with(['reports' => $archivedReports]);
+    }
+
+    public function restore($id)
+    {
+        // return $id;
+        try {
+            $report = Report::onlyTrashed()->where('id', $id)->first();
+
+            if ($report) {
+                $report->restore();
+
+                return redirect()->route('showreport');
+            } else {
+                return abort(404);
+            }
+        } catch (\Throwable $th) {
+            return abort(500);
         }
     }
 }

@@ -2,18 +2,21 @@
 @section('title' , 'Analytics')
 @section('content')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<h1>Analytics</h1>
-<div>
+<h1 class="mb-5">Analytics</h1>
+
+<div class="row">
+  <div class="col-8">
     <canvas id="myChart"></canvas>
+  </div>
+  <div class="col-4">
+    <canvas id="doughnutChart"></canvas>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
-<div class="col-2">
-
 <script>
-    const ctx = document.getElementById('myChart');
+  const ctx = document.getElementById('myChart');
   
     new Chart(ctx, {
       type: 'bar',
@@ -33,13 +36,37 @@
         }
       }
     });
-</script>
-</div>
 
-<div class="col-1"><script>
-  
-  </script>
-</div>
+    const el = document.getElementById('doughnutChart');
+
+    
+
+    const data = {
+    labels: [
+      'Red',
+      'Blue',
+      'Yellow'
+    ],
+    datasets: [{
+      label: 'My First Dataset',
+      data: [300, 50, 100],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)'
+      ],
+      hoverOffset: 4
+    }]
+  };
+
+  const config = {
+      type: 'doughnut',
+      data: data,
+    };
+
+    new Chart(el, config);
+</script>
+
 
 
 

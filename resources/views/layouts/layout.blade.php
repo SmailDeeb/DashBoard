@@ -30,7 +30,7 @@
                     </li>
                     @can('view-analysis')
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('analyes') }}">Analyes
+                        <a class="nav-link" href="{{ route('analyes') }}">Analysis
                             <span class="sr-only">(current)</span></a>
                     </li>
                     @endcan
@@ -49,6 +49,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             @can('view-reports')
                             <li><a class="dropdown-item" href="{{ route('showreport') }}">VIEW REPORTS</a></li>
+                            <li><a class="dropdown-item" href="{{ route('reports.archived') }}">ARCHIVED</a></li>
                             @endcan
                             <li><a class="dropdown-item" href="{{ route('sendreport') }}">SEND REPORTS</a></li>
 
@@ -78,6 +79,7 @@
 
     @vite('node_modules/jquery/dist/jquery.min.js')
     @vite('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
+    @vite('resources/js/app.js')
     @yield('scripts')
 </body>
 
